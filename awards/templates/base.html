@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    {% if title %}
+    <title>AWARDS - {{title}}</title>
+    {% else %}
+    <title> AWARDS </title>
+    {% endif %}
+
+</head>
+
+<body>
+    {% block content %} <h1>News for {{date|date:"l d-F Y"}}</h1> {%endblock%}
+</body>
+
+</html>
