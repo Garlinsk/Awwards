@@ -1,8 +1,11 @@
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, redirect, render_to_response, HttpResponseRedirect
+from django.templatetags.static import static
+from django.core.exceptions import ObjectDoesNotExist
 import datetime as dt
 from .models import *
 from .forms import *
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
@@ -13,6 +16,7 @@ def index(request):
     return render(request, 'index.html', {"date": date, "projects": projects})
 
 
+@login_required(login_url='/accounts/login/')
 def search_projects(request):
     if 'keyword' in request.GET and request.GET["keyword"]:
         search_term = request.GET.get("keyword")
@@ -39,7 +43,7 @@ def get_project(request, id):
     return render(request, "projects.html", {"project": project})
 
 
-# @login_required(login_url='/accounts/login/')
+@login_required(login_url='/accounts/login/')
 def new_project(request):
     current_user = request.user
     if request.method == 'POST':
@@ -55,7 +59,7 @@ def new_project(request):
     return render(request, 'new-project.html', {"form": form})
 
 
-# @login_required(login_url='/accounts/login/')
+@login_required(login_url='/accounts/login/')
 def user_profiles(request):
     current_user = request.user
     Author = current_user
