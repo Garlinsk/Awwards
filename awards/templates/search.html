@@ -1,0 +1,81 @@
+{%extends 'base.html'%}
+{% load bootstrap4 %}
+{% block content %}
+
+
+
+
+
+  <div class="">
+    {% if projects %}
+    <div class="jumbotron jumbotron-fluid bg-light">
+        <div class="">
+          <h2 class="display-6 text-center font-weight-bold">Found {{ projects|length }} projects for searched term {{message}}</h2>
+        </div>
+      </div>
+    {% else %}
+    <div class="jumbotron jumbotron-fluid bg-light">
+        <div class="">
+          <h2 class="display-5 text-center font-weight-bold">Found 0 projects for the searched term {{message}}</h2>
+        </div>
+      </div>
+    {% endif %}
+
+  </div>
+
+  <div class="container-fluid">
+      <div class="mb-2 pb-2 pl-4 pr-2 ml-4 mr-1">
+          <h4 class="display-6 font-weight-bold"> Sites of the day </h4>
+      </div>
+    
+        <div class="row pl-2 pr-2 ml-1 mr-1">
+            {% for project_item in projects %}
+                <div class="col-lg-3">
+                    <div class="card-deck">
+                    
+                        <div class="card">
+                          <!-- Card image -->
+                        <div class="view overlay zoom">
+                            {% if project_item.project_image %}
+                            <a href="/project/{{project_item.id}}">
+                            <img class="card-img-top" src="{{project_item.project_image.url}}" alt="{{ project_item.project_name }}" height="300px">
+                            </a>
+                            {% else %}
+                            <a href="/project/{{project_item.id}}">
+                            <img  class="card-img-top" src="https://source.unsplash.com/1600x900/?fun,vacation" alt="{{ project_item.project_name }}">
+                            </a>
+                            {% endif %}
+                            
+                            <a href="/project/{{project_item.id}}">
+                              <div class="mask rgba-black-light">
+                                  <!-- <div class="d-flex justify-content-end">
+                                   <a href="{{project_item.link}}" target="_blank" title="Visit site"> <button type="button" class="btn btn-light px-3"><i class="fas fa-directions" aria-hidden="true"></i></button>
+                                  </a></div> -->
+                                <!-- <img class="ico-svg" src="/media/images/redo-arrow (2).png" alt=""> -->
+                              </div>
+                            </a>
+                          </div>
+                    
+                          <div class="card-body pr-2 pl-2 pr-2 mr-2">
+                            <h5 class="card-title ml-4">{{ project_item.project_title }}</h5>
+                            <div class="row ml-2">
+                              <div class="col-lg-6 dark-text"> <small> <span class="mr-1"> From {{project_item.country.name}}</span> <img src="{{project_item.country.flag}}" alt=" {{project_item.country.name}} flag">  </small> </div>
+                              <div class="col-lg-6 dark-text d-flex justify-content-end"> <small> {{project_item.pub_date|date:"d /m/Y"}} </small> </div>
+                            </div>
+                          </div>
+                          <div class="card-footer">
+                            <small class="text-muted ml-2"><img src="{{ project_item.Author.profile.photo.url }}" alt="" class="rounded-circle img-fluid mr-1" style="width: 30px;">
+                            BY {{project_item.Author.first_name|upper}} </small>
+                          </div>
+                        </div>
+                      
+                    
+                      </div>
+                    <!-- end of card deck  -->
+    
+                </div>
+          {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
