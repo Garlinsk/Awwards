@@ -1,0 +1,99 @@
+{%extends 'layout.html'%}
+
+{% load bootstrap4%}
+{% load ratings %}
+
+{% block content %}
+<div class="container">
+    <div class="row mt-4"></div>
+    <!-- Grid row -->
+    <div class="row">
+
+        <!-- Grid column -->
+        <div class="col-lg-12">
+
+            <!-- Card -->
+            <div class="card card-cascade wider reverse">
+
+                <!-- Card image -->
+                <div class="view view-cascade overlay">
+                    {% if project.project_image %}
+                    <img class="card-img-top" src="{{project.project_image.url}}" alt="{{ project.project_name }}"
+                        style="max-height: 500px;">
+                    {% else %}
+                    <img class="card-img-top" src="https://source.unsplash.com/1600x900/?fun,vacation"
+                        alt="{{ project.project_name }}">
+                    {% endif %}
+                    <a href="#!">
+                        <div class="mask rgba-white-slight">
+                            <div class="d-flex justify-content-end">
+                                <a href="{{project.link}}" target="_blank" title="Visit site"> <button type="button"
+                                        class="btn btn-light px-3"><i class="fas fa-directions"
+                                            aria-hidden="true"></i></button>
+                                </a>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Card content -->
+                <div class="card-body card-body-cascade text-center">
+
+                    <!-- Title -->
+                    <h2 class="font-weight-bold"><a>{{ project.project_title }}</a></h2>
+                    <!-- Data -->
+                    <h4 class="">{{ project.project_description }}</h4>
+
+                    <!-- Social shares -->
+                    <div>
+                        <a href="{{project.link}}" target="_blank" title="Visit site">
+                            <button type="button" class="btn btn-default font-weight-bold px-3">Visit site</button></a>
+                    </div>
+                    <div class="mt-2 pt-2">
+                        <h4>Vote</h4>
+                    </div>
+                    {% ratings project %}
+
+
+                    <div class="row">
+                        <div class="col-lg-6 dark-text"> <small> <span class="mr-1"> From
+                                    {{project.country.name}}</span>
+                                <img src="{{project.country.flag}}" alt=" {{project.country.name}} flag"> </small>
+                        </div>
+
+                        <div class="col-lg-6 dark-text"> <small> Date Posted: {{project.pub_date|date:"d /m/Y"}}
+                            </small> </div>
+                    </div>
+                    <!-- {{ratings_start_userrating}} -->
+                </div>
+                <!-- Card content -->
+
+            </div>
+            <!-- Card -->
+
+            <!-- Card -->
+            <div class="card mt-5 pb-2 mb-2">
+
+                <!-- Card footer -->
+                <div class="card-footer bg-white">
+                    <h5 class="pt-2">CREDITS</h5>
+
+                    <hr>
+
+                    <small class="font-weight-bold ml-2"><img src="{{ project.Author.profile.photo.url }}" alt=""
+                            class="rounded-circle img-fluid mr-1" style="width: 50px;">
+                        BY {{project.Author.first_name|upper}} <span class="ml-1 mr-1"> From
+                            {{project.country.name}}</span>
+                        <img src="{{project.country.flag}}" alt=" {{project.country.name}} flag"></small>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+</div>
+{% endblock %}

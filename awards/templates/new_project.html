@@ -1,1 +1,60 @@
 {% load bootstrap4 %}
+
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>New Project- Awards</title>
+    
+    {% block styles %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/basenews.css' %}">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+    {% endblock %}
+    </head>
+    
+    <body>
+        {% include "navbar.html" %}
+    
+        <div class="jumbotron jumbotron-fluid bg-light pb-3 pt-3">
+    
+            <h2 class="display-5 text-center font-weight-bold">SUBMIT YOUR SITE </h2>
+    
+        </div>
+    
+        <div class="row">
+            <!-- Empty div -->
+            <div class="col-lg-3"></div>
+    
+            <div class="col-lg-6 pt-2 ">
+                <form action="{%url 'new-project'%}" method="post" enctype="multipart/form-data">
+                    {%csrf_token%}
+    
+                    {% bootstrap_form form%}
+                    <input type="submit" class="btn btn-success btn-lg font-weight-bold" value="SUBMIT">
+                </form>
+            </div>
+    
+            <div class="col-lg-3"></div>
+    
+        </div>
+    
+    
+        {% block scripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+        {% bootstrap_javascript %}
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+        {% endblock %}
+    
+    </body>
+    
+    </html>
