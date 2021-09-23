@@ -2,7 +2,7 @@ asgiref==3.4.1
 autopep8==1.5.7
 beautifulsoup4==4.10.0
 confusable-homoglyphs==3.2.0
-Django==1.11.29
+Django==2.2.24
 django-bootstrap4==3.0.1
 django-registration==2.4.1
 Pillow==8.3.2
