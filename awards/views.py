@@ -1,7 +1,8 @@
-from django.http  import HttpResponse
-from django.shortcuts import render
+from django.http import HttpResponse, Http404
+from django.shortcuts import render, redirect, render_to_response, HttpResponseRedirect
 import datetime as dt
 from .models import *
+from .forms import *
 # Create your views here.
 
 
@@ -23,3 +24,54 @@ def search_projects(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'search.html', {"message": message})
+
+
+
+
+def get_project(request, id):
+
+    try:
+        project = Projects.objects.get(pk=id)
+
+    except ObjectDoesNotExist:
+        raise Http404()
+
+    return render(request, "projects.html", {"project": project})
+
+
+# @login_required(login_url='/accounts/login/')
+def new_project(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = NewProjectForm(request.POST, request.FILES)
+        if form.is_valid():
+            project = form.save(commit=False)
+            project.Author = current_user
+            project.save()
+        return redirect('index')
+
+    else:
+        form = NewProjectForm()
+    return render(request, 'new-project.html', {"form": form})
+
+
+# @login_required(login_url='/accounts/login/')
+def user_profiles(request):
+    current_user = request.user
+    Author = current_user
+    projects = Projects.get_by_author(Author)
+
+    if request.method == 'POST':
+        form = ProfileUpdateForm(
+            request.POST, request.FILES, instance=request.user.profile)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.save()
+        return redirect('profile')
+
+    else:
+        form = ProfileUpdateForm()
+
+    return render(request, 'registration/profile.html', {"form": form, "projects": projects})
+
+

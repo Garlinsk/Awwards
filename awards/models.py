@@ -32,13 +32,11 @@ class Profile(models.Model):
         verbose_name_plural = 'Profiles'
 class Projects(models.Model):
     project_title = models.CharField(max_length=255)
-    project_image = models.ImageField(
-        upload_to='images/', default='images/default.jpg')
+    project_image = models.ImageField(upload_to='images/', default='images/default.jpg')
     project_description = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
     Author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
-    author_profile = models.ForeignKey(
-        Profile, on_delete=models.CASCADE, blank=True, default='1')
+    author_profile = models.ForeignKey(Profile, on_delete=models.CASCADE, blank=True, default='1')
     link = models.URLField()
    
 
