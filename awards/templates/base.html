@@ -11,10 +11,6 @@
     {% else %}
     <title> AWARDS </title>
     {% endif %}
-
-    {% block styles %}
-    {% bootstrap_css %}
-    {% endblock %}
 </head>
 
 <body>
@@ -27,6 +23,102 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     {% bootstrap_javascript %}
     {% endblock %}
+
+
+    {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+    <script type="text/javascript" src="{% static 'script.js' %}"></script>
+    
+    
+    {% endblock %}
+    <div class="mb-4 pb-4"></div>
+    <!-- Footer -->
+    <footer class="page-footer font-small bg-dark mt-4 pt-4">
+    
+        <!-- Footer Links -->
+        <div class="container-fluid text-center text-md-left">
+    
+            <!-- Grid row -->
+            <div class="row">
+    
+                <!-- Grid column -->
+                <div class="col-md-6 mt-md-0 mt-3">
+    
+                    <!-- Content -->
+                    <h6 class="text-uppercase pl-2 ml-2">The awards for design, creativity and freedom.
+                    </h6>
+                    <p> <span class="font-weight-bold pl-2 ml-2">Follow Us:</span> Twitter Facebook YouTube</p>
+    
+                </div>
+                <!-- Grid column -->
+    
+                <hr class="clearfix w-100 d-md-none pb-3">
+    
+                <!-- Grid column -->
+                <div class="col-md-3 mb-md-0 mb-3">
+    
+                    <!-- Links -->
+                    <!-- <h5 class="text-uppercase">Links</h5> -->
+    
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#!">About Us</a>
+                        </li>
+                        <li>
+                            <a href="#!">Jobs</a>
+                        </li>
+                        <li>
+                            <a href="#!">Winners</a>
+                        </li>
+                        <li>
+                            <a href="#!">Nominees</a>
+                        </li>
+                    </ul>
+    
+                </div>
+                <!-- Grid column -->
+    
+                <!-- Grid column -->
+                <div class="col-md-3 mb-md-0 mb-3">
+    
+                    <!-- Links -->
+                    <!-- <h5 class="text-uppercase">Links</h5> -->
+                    <a href="https://twitter.com/garlinsk?ref_src=twsrc%5Etfw" target="_blank" class="twitter-follow-button"
+                        data-size="large" data-show-screen-name="false" data-lang="en" data-show-count="false">Follow
+                        @garlinsk</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    <!-- <ul class="list-unstyled">
+                <li>
+                  <a href="#!">Link 1</a>
+                </li>
+                <li>
+                  <a href="#!">Link 2</a>
+                </li>
+                <li>
+                  <a href="#!">Link 3</a>
+                </li>
+                <li>
+                  <a href="#!">Link 4</a>
+                </li>
+              </ul> -->
+    
+                </div>
+                <!-- Grid column -->
+    
+            </div>
+            <!-- Grid row -->
+    
+        </div>
 </body>
 
 </html>

@@ -8,6 +8,9 @@ from .forms import *
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.conf import settings
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializer import ProfileSerializer, ProjectSerializer
 
 
 # Create your views here.
@@ -93,5 +96,12 @@ def user_profiles(request):
         form = ProfileUpdateForm()
 
     return render(request, 'registration/profile.html', {"form": form, "projects": projects})
+
+
+class ProjectList(APIView):
+    def get(self, request, format=None):
+        all_project = Projects.objects.all()
+        serializers = ProjectSerializer(all_project, many=True)
+        return Response(serializers.data)
 
 
