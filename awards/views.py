@@ -1,11 +1,15 @@
 from django.http import HttpResponse, Http404
-from django.shortcuts import render, redirect, render_to_response, HttpResponseRedirect
+from django.shortcuts import render, redirect,  HttpResponseRedirect
 from django.templatetags.static import static
 from django.core.exceptions import ObjectDoesNotExist
 import datetime as dt
 from .models import *
 from .forms import *
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.conf import settings
+
+
 # Create your views here.
 
 
@@ -14,6 +18,20 @@ def index(request):
     projects = Projects.get_projects()
 
     return render(request, 'index.html', {"date": date, "projects": projects})
+
+
+def register(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Account created for {username}')
+            return redirect('/')
+
+    else:
+        form = RegisterForm()
+    return render(request, 'registration/registration_form.html', {'form': form})
 
 
 @login_required(login_url='/accounts/login/')
@@ -28,8 +46,6 @@ def search_projects(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'search.html', {"message": message})
-
-
 
 
 def get_project(request, id):
