@@ -13,6 +13,8 @@ urlpatterns = [
     url(r'^accounts/profile/$', views.user_profiles, name='profile'),
     url(r'^api/projects/$', views.ProjectList.as_view()),
     url(r'^api/profiles/$', views.ProfileList.as_view()),
+    url(r'^ratings/', include('star_ratings.urls',
+        namespace='ratings')),
 
 ]
 

@@ -1,4 +1,4 @@
-{%extends 'layout.html'%}
+{%extends 'base.html'%}
 
 {% load bootstrap4%}
 {% load ratings %}
@@ -82,7 +82,7 @@
 
                     <small class="font-weight-bold ml-2"><img src="{{ project.Author.profile.photo.url }}" alt=""
                             class="rounded-circle img-fluid mr-1" style="width: 50px;">
-                        BY {{project.Author.first_name|upper}} <span class="ml-1 mr-1"> From
+                        BY {{project.Author.first_name|upper}}<span class="ml-1 mr-1"> From
                             {{project.country.name}}</span>
                         <img src="{{project.country.flag}}" alt=" {{project.country.name}} flag"></small>
                 </div>
