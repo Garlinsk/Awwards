@@ -34,7 +34,7 @@
     
             <div class="col-lg-6 pt-2 ">
                 <form action="{%url 'new-project'%}" method="post" enctype="multipart/form-data">
-                    {%csrf_token%}
+                  
     
                     {% bootstrap_form form%}
                     <input type="submit" class="btn btn-success btn-lg font-weight-bold" value="SUBMIT">

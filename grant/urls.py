@@ -26,6 +26,4 @@ urlpatterns = [
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^logout/$', views.LogoutView, {"next_page": '/'}),
     url(r'^tinymce/', include('tinymce.urls')),
-    
-
 ]
